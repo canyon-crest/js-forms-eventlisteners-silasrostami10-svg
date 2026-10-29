@@ -18,6 +18,12 @@
 // STEP 1: Get the "Shout" button by its ID ("btnShout")
 //         using document.getElementById()
 
+document.getElementById("btnShout").addEventListener("click", function() {
+    value=document.getElementById("shoutInput").value
+    value=value.toUpperCase()+"!"
+    document.getElementById("outShout").innerHTML=value
+})
+
 // STEP 2: Add a click event listener to the button.
 //         Inside the listener function:
 //         a) Get the text from the input with ID "shoutInput"
@@ -30,6 +36,9 @@
 //         Example: "hello" → "HELLO!"
 
 
+
+
+
 // ============================================
 //  MAIN: Pizza Builder
 // ============================================
@@ -40,9 +49,52 @@
 //   - Service (dropdown): Dine In $0, Take Out $1.50,
 //     Delivery $3.00
 
+
+
+
 // STEP 3: Get the "Calculate Total" button by ID ("btnCalc")
 //         Add a click event listener.
 //         Inside the listener:
+
+document.getElementById("btnCalc").addEventListener("click", function() {
+    total=0
+    sizes=document.getElementsByName("rg")
+    for (i=0; i<sizes.length; i++) {
+        if (sizes[i].checked) {
+            total+=parseFloat(sizes[i].value)
+        }
+    }
+    toppings=document.getElementsByName("cb")
+    for(i=0; i<toppings.length; i++) {
+        count=0
+        if (toppings[i].checked) {
+            count+=1
+        }
+        total+=count*0.5
+
+}   
+    service=document.getElementById("serviceSelect").value
+        if (service=="dinein") {
+            total+=0
+        } else if (service=="takeout") {
+            total+=1.5
+        
+    } else {
+        total+=3
+    }
+    if (document.getElementById("myInput").value==0) {
+        name="Customer"
+    } else {
+        name=document.getElementById("myInput").value
+    }
+
+
+document.getElementById("myPara").innerHTML=name+", your total is $"+total.toFixed(2)+""
+
+})
+
+
+
 
 //   a) Get the selected size price:
 //      Use document.getElementsByName("rg") to get all
@@ -83,3 +135,15 @@
 //         c) Uncheck ALL topping checkboxes (loop through them)
 //         d) Set the service dropdown value to "dinein"
 //         e) Set the output paragraph innerHTML to ""
+
+
+document.getElementById("clearBtn").addEventListener("click", function(){
+    document.getElementById("myInput").value=""
+    document.getElementById("r3").checked=true
+    for (i=0; i<toppings.length; i++) {
+        toppings[i].checked=false
+    }
+    service
+
+})
+
